@@ -5,25 +5,27 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public static int tracker = 0;
+    public static int toKlik = 0;//for menu
+
+    [SerializeField] AudioSource playAudio;
+
     int pos = tracker;
     int kliks = 0;
 
     void Update()
     {
-        DrawScene();
-    }
-
-    public void DrawScene()
-    {
         Draw();
     }
+
 
 
     public void Draw()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            playAudio.Play();
             kliks++;
+            toKlik++;
             ObjectPool.Instance.SpawnfromPool("red", new Vector3(pos, 0, 0), Quaternion.identity, pos);
             pos++;
             if (kliks == 10)
